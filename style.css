@@ -1,0 +1,66 @@
+
+body {
+      font-family: sans-serif;
+      text-align: center;
+}
+    
+h1 {
+      font-size: 50px;
+      margin-bottom: 30px;
+}
+
+#header1 {
+    font-family: "Exo 2", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 250;
+    font-style: normal;
+    
+}
+    
+button {
+      font-size: 20px;
+      padding: 10px 20px;
+      border: none;
+      cursor: pointer;
+}
+    
+#evet {
+      background-color: #000000;
+      color: white;
+}
+    
+#hayir {
+      background-color: #000000;
+      color: white;
+}
+    
+#mesajKutusu {
+      display: none;
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background-color: #fff;
+      padding: 20px;
+      border: 1px solid #ccc;
+      z-index: 10;
+      font-family: "Exo 2", sans-serif;
+      font-optical-sizing: auto;
+      font-weight: 250;
+      font-style: normal;
+      font-size: 20px;
+}
+
+.gif-container {
+      position: fixed;
+      top: calc(500px); 
+      left: 70%;
+      transform: translate(-50%, -50%);
+      display: none;
+}
+
+.gif {
+      width: 400px;
+      height: auto;
+      margin:70px;
+}

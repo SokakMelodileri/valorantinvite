@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Valorant Davet</title>
+  <link rel="icon" type="image/x-icon" href="favico.png">
+  <link rel="stylesheet" href="style.css">
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Exo+2:ital,wght@0,100..900;1,100..900&display=swap');
+  </style>
+</head>
+<body>
+  <h1 id="header1">Valo?</h1>
+  <button id="evet" onclick="sendMessageyes()">Evet</button>
+  <button id="hayir" onclick="sendMessageno()">Hayır</button>
+  <div id="mesajKutusu"></div>
+  <div id="evetGifContainer" class="gif-container">
+    <img id="evetGif" class="gif" src="https://gifdb.com/images/high/valorant-omen-chibi-sticker-3328n5yx9oue1ryb.gif" alt="Evet Gif">
+  </div>
+  <div id="hayirGifContainer" class="gif-container">
+    <img id="hayirGif" class="gif" src="https://media.tenor.com/lmA7VALYIAsAAAAM/sad-pikachu.gif" alt="Hayır Gif">
+  </div>
+
+  <script>
+    const evetButton = document.getElementById('evet');
+    const hayirButton = document.getElementById('hayir');
+    const mesajKutusu = document.getElementById('mesajKutusu');
+    const evetGifContainer = document.getElementById('evetGifContainer');
+    const hayirGifContainer = document.getElementById('hayirGifContainer');
+    let state = 1;
+    var audioaway = new Audio('effect.mp3');
+    var audiohappy = new Audio('effecthappy.mp3');
+    var audiosad = new Audio('effectsad.mp3');
+
+    evetButton.addEventListener('click', function() {
+      mesajKutusu.textContent = ':)';
+      mesajKutusu.style.display = 'block';
+      evetGifContainer.style.display = 'block'; 
+      hayirGifContainer.style.display = 'none'; 
+      state = 1;
+
+      hayirButton.removeEventListener('mouseover', hayirButtonMouseOverHandler); 
+      hayirButton.addEventListener('mouseover', hayirButtonMouseOverHandler); 
+      audiohappy.play();
+    });
+
+    
+    hayirButton.addEventListener('click', function() {
+      mesajKutusu.textContent = 'peki sen kazandın :(';
+      mesajKutusu.style.display = 'block';
+      hayirGifContainer.style.display = 'block'; 
+      evetGifContainer.style.display = 'none'; 
+      state = 0;
+      audiosad.play();
+      
+    });
+
+    
+    function hayirButtonMouseOverHandler() {
+      if (state === 1) {
+        const randomX = Math.floor(Math.random() * 200) - 50;
+        const randomY = Math.floor(Math.random() * 200) - 50;
+        hayirButton.style.transform = `translate(${randomX}px, ${randomY}px)`;
+
+        const rastgeleMesajlar = [
+          'kovaladıkça kaçan ateş böceği misin',
+          'peşimi bırak',
+          'beni ya-ka-la-ya-maz-sın...',
+          'yetişin komuşlar alooo',
+          'aloooooooooooooooo',
+          'imdaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaat',
+        ];
+
+        const rastgeleMesaj = rastgeleMesajlar[Math.floor(Math.random() * rastgeleMesajlar.length)];
+        mesajKutusu.textContent = rastgeleMesaj;
+        mesajKutusu.style.display = 'block';
+        evetGifContainer.style.display = 'none';
+        hayirGifContainer.style.display = 'none';
+        audioaway.play();
+      }
+    }
+    hayirButton.addEventListener('mouseover', hayirButtonMouseOverHandler); 
+  </script>
+
+</script>
+<script>
+    function sendMessageyes() {
+      const request = new XMLHttpRequest();
+      request.open("POST", "your webhook url goes here");
+
+      request.setRequestHeader('Content-type', 'application/json');
+
+      const params = {
+        username: "Valorant Davet Kontrol",
+        avatar_url: "https://i.pinimg.com/564x/38/20/91/38209128a1fbb47c45bb7049f628ba2c.jpg",
+        content: "Davetin kabul edildi :white_check_mark:"
+      }
+      
+      
+
+      request.send(JSON.stringify(params));
+      alert("Kabul mesajınız iletildi")
+      
+    }
+</script>
+<script>
+  function sendMessageno() {
+    const request = new XMLHttpRequest();
+    request.open("POST", "your webhook url goes here");
+
+    request.setRequestHeader('Content-type', 'application/json');
+
+    const params = {
+      username: "Valorant Davet Kontrol",
+      avatar_url: "https://i.pinimg.com/564x/38/20/91/38209128a1fbb47c45bb7049f628ba2c.jpg",
+      content: "Davetin reddedildi :x:"
+    }
+    
+    request.send(JSON.stringify(params));
+    alert("Red mesajınız iletildi")
+  }
+</script>
+</body>
+</html>
